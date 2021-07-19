@@ -9,10 +9,13 @@
     <body>
         <div class="nav-bar"></div>
         <div id="app">
-            <product-display @add-to-cart="addToCart"></product-display>
+            <product-display @add-to-cart="addToCart" merch="socks.getVueSocks()"></product-display>
             <product-display @add-to-cart="addToCart"></product-display>
             <div class="cart">
                 <p>Cart {{ cartCount }}</p>
+                <ul>
+                    <li v-for="(c, i) in cart">{{ c.productId }}: {{ c.quantity }}</li>
+                </ul>
             </div>
         </div>
         <script src="./main.js"></script>

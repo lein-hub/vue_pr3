@@ -1,4 +1,5 @@
 Vue.component('ProductDisplay', {
+    props:['merch'],
     template:
     `
         <div class="product">
@@ -8,7 +9,7 @@ Vue.component('ProductDisplay', {
 
             <div class="product-info">
                 <h1>{{ title }}</h1>
-                <p v-if="inStock">In Stock</p>
+                <p v-if="inStock">In Stock<br>remains: {{ inStock }}</p>
                 <p v-else>Out of Stock</p>
 
                 <ul>
@@ -55,20 +56,18 @@ Vue.component('ProductDisplay', {
         },
         inStock() {
             return this.variants[this.selectedVariant].variantQuantity;
-        }
+        },
     },
     methods: {
         updateProduct(index) {
             this.selectedVariant = index;
         },
         addToCart() {
+            this.variants[this.selectedVariant].variantQuantity--;
             this.$emit('add-to-cart', this.variants[this.selectedVariant]);
         },
     },
 });
-
-
-
 
 let app = new Vue({
     el:'#app',
@@ -80,15 +79,26 @@ let app = new Vue({
     },
     computed: {
         cartCount() {
-            return this.cart.length;
+            let count = 0;
+            this.cart.forEach(element => {
+                count += element.quantity;
+            });
+            return count;
         }
     },
     methods: {
         addToCart(v) {
+            for (let i=0; i<this.cart.length; i++) {
+                if (this.cart[i].productId === v.variantId) {
+                    return this.cart[i].quantity++;
+                }
+            }
+
             let temp = {
                 productId: v.variantId,
+                quantity: 1,
             }
-            this.cart.push(temp);
+            return this.cart.push(temp);
         },
     },
 });

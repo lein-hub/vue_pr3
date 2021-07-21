@@ -1,28 +1,59 @@
 <template>
+<div>
+  <div class="nav-bar"></div>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <product-display @add-to-cart="addToCart" merch="socks.getVueSocks()"></product-display>
+    <product-display @add-to-cart="addToCart"></product-display>
+    <div class="cart">
+        <p>Cart {{ cartCount }}</p>
+        <ul>
+            <li v-for="(c, i) in cart" :key="i">{{ c.productId }}: {{ c.quantity }}</li>
+        </ul>
+    </div>
   </div>
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ProductDisplay from './components/ProductDisplay.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    ProductDisplay
+  },
+  data() {
+      return {
+        cart: [],
+      }
+  },
+  computed: {
+      cartCount() {
+          let count = 0;
+          this.cart.forEach(element => {
+              count += element.quantity;
+          });
+          return count;
+      }
+  },
+  methods: {
+      addToCart(v) {
+          for (let i=0; i<this.cart.length; i++) {
+              if (this.cart[i].productId === v.variantId) {
+                  return this.cart[i].quantity++;
+              }
+          }
+
+          let temp = {
+              productId: v.variantId,
+              quantity: 1,
+          }
+          return this.cart.push(temp);
+      },
+  },
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import './assets/styles.css';
 </style>

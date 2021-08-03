@@ -1,10 +1,9 @@
 <template>
   <v-container>
     <v-row>
-      <v-col class="justify-start" cols="12">
         <v-card
           :loading="loading"
-          class="mx-auto my-12"
+          class="my-12 mx-auto"
           max-width="256"
           v-for="b in books" :key="b.bookId"
         >
@@ -17,7 +16,8 @@
           </template>
 
           <v-img
-            height=100%
+            height=200
+            contain
             :src=b.cover
           ></v-img>
 
@@ -27,7 +27,6 @@
             <div>{{b.author}}</div>
           </v-card-text>
         </v-card>
-      </v-col>
     </v-row>
   </v-container>
 </template>

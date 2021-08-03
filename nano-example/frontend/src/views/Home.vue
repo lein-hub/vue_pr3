@@ -1,15 +1,15 @@
 <template>
-  <hello-world />
+  <book-index />
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
+  import BookIndex from '../components/BookIndex'
 
   export default {
     name: 'Home',
 
     components: {
-      HelloWorld,
+      BookIndex,
     },
   }
 </script>

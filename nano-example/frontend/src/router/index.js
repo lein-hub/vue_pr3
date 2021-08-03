@@ -1,29 +1,19 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-Vue.use(VueRouter)
+import BookIndex from '@/components/BookIndex.vue';  // @ = src폴더
+import BookDetail from '@/components/BookDetail.vue';
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+Vue.use(VueRouter);
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
-
-export default router
+export default new VueRouter({
+    mode: 'history',
+    routes: [
+        { path:'/', component:BookIndex },
+        { path:'/book/:book_id', component:BookDetail },
+        // { path:'/menus/:menu_id', component:MenuItem },
+        // { path:'/events', component:Events, props: (route) => ({query_id: route.query.event_id}) },
+        // { path:'/events/:event_id', component:Events, props: true },
+        // { path:'/reviews', component:Reviews },
+    ]
+});

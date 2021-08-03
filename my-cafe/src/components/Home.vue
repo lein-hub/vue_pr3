@@ -1,14 +1,41 @@
 <template>
     <div>
         <h1>Welcome {{userId}}</h1>
-        <input v-model="newId" type="text"><button @click="updateUserId">Save</button>
-        <button @click="updateReviews">Update</button>
+        <!-- <input v-model="newId" type="text"> -->
+        <v-text-field v-model="newId"></v-text-field>
+        <v-btn @click="updateUserId">
+            <v-icon color=blue left>mdi-content-save</v-icon>
+            Save
+        </v-btn>
+        <v-btn @click="updateReviews">
+            <v-icon color=green left>mdi-cached</v-icon>
+            Update
+        </v-btn>
+        <!-- <button @click="updateUserId">Save</button> -->
+        <!-- <button @click="updateReviews">Update</button> -->
         <h3>리뷰갯수: {{reviewCount}}개</h3>
-        <ul>
+        <!-- <ul>
             <li v-for="r in reviews" :key="r.id">
                 <p>{{r.body}}</p>
             </li>
-        </ul>
+        </ul> -->
+        <v-simple-table>
+            <template v-slot:default>
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Comment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="r in reviews" :key="r.id">
+                        <td>{{r.email}}</td>
+                        <td>{{r.body}}</td>
+                    </tr>
+                </tbody>
+
+            </template>
+        </v-simple-table>
     </div>
 </template>
 

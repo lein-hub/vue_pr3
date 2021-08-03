@@ -35,22 +35,34 @@
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
+
+      <v-btn to="/" text>
+        <v-icon>mdi-home</v-icon>
+        <span class="mr-2">Home</span>
+      </v-btn>
+      <v-btn to="/menus" text><span class="mr-2">Menus</span></v-btn>
+      <v-btn to="/events" text><span class="mr-2">Events</span></v-btn>
+      <v-btn to="/reviews" text><span class="mr-2">reviews</span></v-btn>
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
+      <v-contatiner>
+        <v-row>
+          <v-col>
+            <router-view></router-view>
+          </v-col>
+        </v-row>
+      </v-contatiner>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
   },
 
   data: () => ({

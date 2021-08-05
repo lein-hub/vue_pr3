@@ -8,6 +8,8 @@ const authMiddleware = require('../middleware/auth');
 // 새 사용자 추가할 때는 토큰 확인하지 않음.
 router.post('/', function(req, res, next) {
   const user = req.body;
+  console.log(user);
+  console.log(req);
   if(!user || !user.userid || !user.password){
     res.status(400).json({error:'Invalid request.'})
   }

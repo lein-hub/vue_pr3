@@ -1,22 +1,27 @@
 module.exports = {
-  devServer:{
+  devServer: {
     // /api로 시작하는 요청 주소 정의
     proxy: {
-      '/api': {
-        target: 'http://localhost:3000/',
+      "/api": {
+        target: "http://localhost:3000",
         changeOrigin: true,
         pathRewrite: {
-          '^/api':'',
-        }
-      }
-    }
+          "^/api": "",
+        },
+      },
+      "/memos/uploads": {
+        target: "http://localhost:3000/img",
+        changeOrigin: true,
+        pathRewrite: {
+          "^/memos/uploads": "",
+        },
+      },
+    },
   },
 
   // 배포 위치
   // npm run build를 입력해 배포한다.
-  outputDir: '../backend/public',
+  outputDir: "../backend/public",
 
-  transpileDependencies: [
-    'vuetify'
-  ]
-}
+  transpileDependencies: ["vuetify"],
+};

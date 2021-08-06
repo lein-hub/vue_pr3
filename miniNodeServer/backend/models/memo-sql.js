@@ -58,6 +58,8 @@ exports.updateMemoSql = (memo) =>{
       return `update memo set
           title='${memo.title}',
           content='${memo.content}',
+          originalFileName=null,
+          fileUrl=null,
           savedTime=${memo.savedTime}
           where memoid=${memo.memoid}`;
     }

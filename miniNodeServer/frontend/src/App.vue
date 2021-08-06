@@ -23,6 +23,14 @@
 
       <v-spacer></v-spacer>
 
+      <v-btn class="mr-2" href="/info">
+        My Info
+      </v-btn>
+
+      <v-btn class="mr-2" href="/add">
+        New Memo
+      </v-btn>
+
       <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"

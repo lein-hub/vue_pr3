@@ -18,15 +18,21 @@ export default new Vuex.Store({
     signin(state, payload) {
       state.accessToken = payload.accessToken;
       localStorage.setItem("accessToken", state.accessToken);
+      localStorage.setItem("userId", payload.userId)
     },
     signout(state) {
       state.accessToken = null;
       localStorage.removeItem("accessToken");
+      localStorage.removeItem("userId");
       location.reload();
     },
     getAccessToken(state) {
       state.accessToken = localStorage.getItem("accessToken");
     },
+    loginFailed(state) {
+        state.accessToken = null;
+        localStorage.removeItem('accessToken');
+    }
   },
   actions: {
     signin({ commit }, payload) {
@@ -36,12 +42,13 @@ export default new Vuex.Store({
         .then((res) => {
           if (res.status == 200) {
             // 로그인 성공
-            commit("signin", { accessToken: res.data.token });
+            commit("signin", { accessToken: res.data.token, userId: data.userid });
           }
         })
-        .catch(() => {
+        .catch((error) => {
           // 에러 발생하면 로그아웃 처리
-          commit("signout");
+          commit("loginFailed");
+          return Promise.reject(error);
         });
     },
     signup({ commit }, payload) {

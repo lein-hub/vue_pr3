@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Add from "../views/AddMemo.vue";
 import Read from "../views/ReadMemo.vue";
 import Edit from "../views/EditMemo.vue";
+import Info from "../views/UserInfo.vue";
 import Signin from "../views/Signin.vue";
 import Signup from "../views/Signup.vue";
 
@@ -23,6 +24,12 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/info",
+    name: "User Info",
+    component: Info,
     meta: { requiresAuth: true },
   },
   {

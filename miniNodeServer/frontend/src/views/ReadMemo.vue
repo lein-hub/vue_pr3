@@ -1,11 +1,15 @@
 <template>
     <div>
         <h1>{{memo.title}}</h1>
-        <img :src="'http://localhost:3000/'+memo.fileUrl" alt="">
+        <img :src="'http://localhost:3000/'+memo.fileUrl" alt="" v-if="memo.fileUrl">
+        <img :src="'http://localhost:3000/resources/noimage.png'" alt="" v-else>
         <p>{{memo.content}}</p>
 
-        <v-btn @click="onClickButton" color="error">
+        <v-btn @click="onClickDelete" class="mb-3" color="error">
         delete
+        </v-btn>
+        <v-btn @click="onClickEdit" class="mb-3" color="success">
+        edit
         </v-btn>
     </div>
 </template>
@@ -21,7 +25,7 @@ export default {
     };
   },
   methods: {
-      onClickButton() {
+      onClickDelete() {
         memoApi
         .deleteMemo(this.$route.params.memoId)
         .then(() => {
@@ -30,6 +34,9 @@ export default {
         .catch((err) => {
             console.log(err);
         });
+      },
+      onClickEdit() {
+          this.$router.push(`/memos/edit/${this.$route.params.memoId}`)
       }
   },
   mounted() {

@@ -63,8 +63,8 @@ router.put('/:memoid', [authMiddleware, upload.single('file')] , function(req, r
     memo.originalFileName=req.file.originalname;
     memo.fileUrl='uploads/'+req.file.filename;
   } else {
-    memo.originalFileName=null;
-    memo.fileUrl=null;
+    // memo.originalFileName=null;
+    // memo.fileUrl=null;
   }
   db.executeUpdate(sql.updateMemoSql(memo));
   res.end('');

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-col>
     <h1>Signup</h1>
     <form @submit.prevent="onSubmit(userid, name, password)">
       <v-text-field v-model="userid" label="User ID" required></v-text-field>
@@ -13,13 +13,13 @@
         required
       ></v-text-field>
 
-      <input type="submit" value="Signup" />
+    <v-btn color="primary" class="mb-4" type="submit"> SignUp </v-btn>
     </form>
-    <v-btn color="success" class="mr-4" @click="onClickSignIn"> SignIn </v-btn>
+    <input type="button" @click="onClickSignIn" value="I already have an account!" />
     <p>
       <i>{{ message }}</i>
     </p>
-  </div>
+  </v-col>
 </template>
 
 <script>

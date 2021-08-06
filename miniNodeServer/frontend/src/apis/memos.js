@@ -28,5 +28,15 @@ export default {
         url: "/api/memos/" + memoId,
         method: "delete",
       });
+  },
+  editMemo(memoId, data) {
+    return sendMultipartRequest({
+        url: "/api/memos/" + memoId,
+        method: "put",
+        data,
+        headers: {
+            'Content-type': 'multipart/form-data'
+        }
+    })
   }
 };

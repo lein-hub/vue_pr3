@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Add from "../views/AddMemo.vue";
 import Read from "../views/ReadMemo.vue";
+import Edit from "../views/EditMemo.vue";
 import Signin from "../views/Signin.vue";
 import Signup from "../views/Signup.vue";
 
@@ -37,6 +38,12 @@ const routes = [
     path: "/memos/:memoId",
     name: "Read",
     component: Read,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/memos/edit/:memoId",
+    name: "Edit",
+    component: Edit,
     meta: { requiresAuth: true },
   },
   {

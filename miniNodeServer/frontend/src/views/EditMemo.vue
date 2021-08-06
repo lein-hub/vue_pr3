@@ -1,14 +1,14 @@
 <template>
-  <memo-writer></memo-writer>
+  <memo-editor></memo-editor>
 </template>
 
 <script>
-import MemoWriter from "../components/MemoWriter.vue"
+import MemoEditor from "../components/MemoEditor.vue"
 
 export default {
   name: "AddMemo",
   components: {
-      MemoWriter,
+      MemoEditor,
   },
   data() {
     return {

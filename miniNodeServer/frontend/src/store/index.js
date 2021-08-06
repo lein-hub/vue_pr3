@@ -43,6 +43,7 @@ export default new Vuex.Store({
           if (res.status == 200) {
             // 로그인 성공
             commit("signin", { accessToken: res.data.token, userId: data.userid });
+            location.replace('/');
           }
         })
         .catch((error) => {

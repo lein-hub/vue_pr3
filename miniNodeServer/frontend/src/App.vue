@@ -23,12 +23,16 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn class="mr-2" href="/info">
+      <v-btn class="mr-2" href="/info" v-if="isLoggedIn">
         My Info
       </v-btn>
 
-      <v-btn class="mr-2" href="/add">
+      <v-btn class="mr-2" href="/add" v-if="isLoggedIn">
         New Memo
+      </v-btn>
+
+      <v-btn class="mr-2" @click="onClickLogOut" v-if="isLoggedIn">
+        Log out
       </v-btn>
 
       <v-btn
@@ -58,5 +62,16 @@ export default {
   data: () => ({
     //
   }),
+  computed: {
+    isLoggedIn() {
+      if (localStorage.getItem('accessToken')) return true;
+      return false;
+    }
+  },
+  methods: {
+    onClickLogOut() {
+      this.$store.commit('signout');
+    }
+  },
 };
 </script>

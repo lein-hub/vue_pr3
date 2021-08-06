@@ -42,7 +42,6 @@ export default {
       this.$store
         .dispatch("signin", { userid, password })
         .then(() => {
-          this.$router.push("/");
         })
         .catch(() => {
           this.message = "Signin Failed.";
